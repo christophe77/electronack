@@ -1,0 +1,25 @@
+{
+  "name": "electronack-client",
+  "productName": "electronack-client",
+  "version": "1.0.0",
+  "description": "electronack-client",
+  "main": "./src/bot.js",
+  "bin": "./src/bot.js",
+  "pkg": {
+    "options": [
+      "experimental-modules"
+    ],
+    "assets": [
+      "node_modules/**/*",
+      "src/**/*"
+    ],
+    "targets": [
+      "node12-macos-x64",
+      "node10-win-x64"
+    ]
+  },
+  "scripts": {
+    "start": "node --experimental-modules ./src/bot.js",
+    "build": "pkg --output build/bot ."
+  }
+}
