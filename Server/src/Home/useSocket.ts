@@ -48,6 +48,14 @@ export default function useSocket(): IUseSocket {
             },
           ]);
         }
+        else if (message.includes("bye")) {
+          const messageSplit = message.split(" ");
+          const id = messageSplit[1];
+          const botsClone = [...bots];
+          const botIndex = botsClone.findIndex(bot => bot.id === id);
+          botsClone.splice(botIndex, 1);
+          setBots(botsClone);
+        }
       });
     });
     server.listen(port, () => {

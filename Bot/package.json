@@ -3,23 +3,31 @@
   "productName": "electronack-client",
   "version": "1.0.0",
   "description": "electronack-client",
+  "keywords": [],
+  "author": {
+    "name": "christophe77",
+    "email": "chrisb@gmx.fr"
+  },
+  "license": "MIT",
   "main": "./src/bot.js",
   "bin": "./src/bot.js",
   "pkg": {
     "options": [
-      "experimental-modules"
+      "experimental-worker"
     ],
     "assets": [
       "node_modules/**/*",
       "src/**/*"
     ],
     "targets": [
-      "node12-macos-x64",
       "node10-win-x64"
     ]
   },
   "scripts": {
-    "start": "node --experimental-modules ./src/bot.js",
-    "build": "pkg --output build/bot ."
+    "start": "node ./src/bot.js",
+    "build": "pkg --debug --output build/evil ."
+  },
+  "dependencies": {
+    "ws": "^8.4.0"
   }
 }

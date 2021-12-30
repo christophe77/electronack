@@ -27,7 +27,7 @@ const BotPanel: FC<BotPanelProps> = ({ bots, broadcast }) => {
               marginBottom: 10,
               padding: "1rem",
               height: 307,
-              width: 200,
+              width: 300,
             }}
           >
             {bots?.length > 0 &&

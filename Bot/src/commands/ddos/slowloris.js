@@ -1,17 +1,17 @@
-const { parentPort, workerData } = require("worker_threads");
-
-parentPort.postMessage(slowloris(workerData));
-
 function slowloris(datas) {
-  const { ip, port, duration } = datas;
+  const args = datas.split(" ");
+  const ip = args[1];
+  const port = args[2];
+  const duration = args[3];
   //
   // Implement your logic here
   //
   try {
     setTimeout(() => {
-      return `${ip}:${port}`;
+      console.log(`${ip}:${port}`);
     }, duration);
   } catch (error) {
     return error;
   }
 }
+module.exports = slowloris
