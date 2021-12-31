@@ -1,24 +1,31 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { styleReset } from 'react95';
+import React, { FC } from "react";
+import ReactDOM from "react-dom";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { styleReset } from "react95";
 import original from "react95/dist/themes/original";
-import Home from './Home';
+import TopBar from "./TopBar";
+import useSocket from "./useSocket";
+import BotPanel from "./BotPanel";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
 `;
 
-const App = () => (
+const App: FC = () => {
+  const { bots, broadcast, startListening, stopListening, serverStatus } =
+    useSocket();
+  return (
     <>
-        <GlobalStyles />
-        <ThemeProvider theme={original}>
-            <Home />
-        </ThemeProvider>
+      <GlobalStyles />
+      <ThemeProvider theme={original}>
+        <TopBar
+          startListening={startListening}
+          stopListening={stopListening}
+          serverStatus={serverStatus}
+        />
+        <BotPanel bots={bots} broadcast={broadcast} />
+      </ThemeProvider>
     </>
-);
-function render() {
-    ReactDOM.render(<App />, document.getElementById("root"));
-}
-
-render();
+  );
+};
+ReactDOM.render(<App />, document.getElementById("root"));

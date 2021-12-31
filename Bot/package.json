@@ -12,9 +12,6 @@
   "main": "./src/bot.js",
   "bin": "./src/bot.js",
   "pkg": {
-    "options": [
-      "experimental-worker"
-    ],
     "assets": [
       "node_modules/**/*",
       "src/**/*"
@@ -29,5 +26,8 @@
   },
   "dependencies": {
     "ws": "^8.4.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.5.1"
   }
 }
