@@ -528,6 +528,11 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@react95/icons@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@react95/icons/-/icons-2.0.4.tgz#1a8d5c98cbfdec87f25a2fda40b9345c3a261ee3"
+  integrity sha512-h/rlFmYZ7OjH6HYXAZzU6ReqqoPpoBggOgXsDlR09hJFcSXdsv3H9hKAiQWqGGHs564kF9GXSzpC/nr1urexhg==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"

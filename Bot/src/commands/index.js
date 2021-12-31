@@ -1,9 +1,11 @@
-const downloadExecute = require('./downloadExecute');
-const ddos =require('./ddos/index')
+const downloadExecute = require("./downloadExecute");
+const ddos = require("./ddos");
+const informations = require("./informations");
 
 const commands = {
   downloadExecute,
-  ddos
+  ddos,
+  informations
 };
 
 module.exports = commands;

@@ -1,14 +1,18 @@
 import React, { FC, useState, ChangeEvent } from "react";
 import { Panel, TextField, Button } from "react95";
-import Commands from "../common/Commands";
 import { Bot } from "../types";
+import Commands from "../common/Commands";
 
-type BotPanelProps = {
-  bots: Bot[];
-  onBotClick: (botId: number) => void;
-  broadcast: (message: string) => void;
+type SingleBotProps = {
+  selectedBot: Bot;
+  handleHideSingleBot: () => void;
+  sendOne: (message: string, id: number) => void;
 };
-const BotPanel: FC<BotPanelProps> = ({ bots, broadcast, onBotClick }) => {
+const SingleBot: FC<SingleBotProps> = ({
+  selectedBot,
+  sendOne,
+  handleHideSingleBot,
+}) => {
   const [command, setCommand] = useState<string>("");
   return (
     <>
@@ -32,19 +36,20 @@ const BotPanel: FC<BotPanelProps> = ({ bots, broadcast, onBotClick }) => {
               width: 300,
             }}
           >
-            {bots?.length > 0 &&
-              bots.map((bot) => {
-                return (
-                  <p
-                    key={bot.id}
-                    onClick={() => {
-                      onBotClick(bot.id);
-                    }}
-                  >
-                    {bot.name}-{bot.platform}
-                  </p>
-                );
-              })}
+            <Button style={{ marginBottom: 8 }} onClick={handleHideSingleBot}>
+              Back
+            </Button>
+
+            {selectedBot && (
+              <ul>
+                <li>Name : {selectedBot.informations?.hostname}</li>
+                <li>
+                  Platform : {selectedBot.informations?.platform}{" "}
+                  {selectedBot.informations?.arch}
+                </li>
+                <li>Uptime : {selectedBot.informations?.uptime}</li>
+              </ul>
+            )}
           </Panel>
           <Commands />
         </div>
@@ -58,10 +63,10 @@ const BotPanel: FC<BotPanelProps> = ({ bots, broadcast, onBotClick }) => {
             fullWidth
           />
           <Button
-            onClick={() => broadcast(command)}
+            onClick={() => sendOne(command, selectedBot.id)}
             style={{ marginLeft: 4, minWidth: 200 }}
           >
-            Send to all
+            Send to single bot
           </Button>
         </div>
         <Panel
@@ -72,10 +77,10 @@ const BotPanel: FC<BotPanelProps> = ({ bots, broadcast, onBotClick }) => {
             width: "100%",
           }}
         >
-          Bots connected : {bots.length}
+          Send command to {selectedBot.informations?.hostname}
         </Panel>
       </Panel>
     </>
   );
 };
-export default BotPanel;
+export default SingleBot;

@@ -6,14 +6,25 @@ import original from "react95/dist/themes/original";
 import TopBar from "./TopBar";
 import useSocket from "./useSocket";
 import BotPanel from "./BotPanel";
+import SingleBot from "./SingleBot";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
 `;
 
 const App: FC = () => {
-  const { bots, broadcast, startListening, stopListening, serverStatus } =
-    useSocket();
+  const {
+    bots,
+    selectedBot,
+    broadcast,
+    sendOne,
+    startListening,
+    stopListening,
+    showSingleBot,
+    setShowSingleBot,
+    handleBotClick,
+    serverStatus,
+  } = useSocket();
   return (
     <>
       <GlobalStyles />
@@ -23,7 +34,19 @@ const App: FC = () => {
           stopListening={stopListening}
           serverStatus={serverStatus}
         />
-        <BotPanel bots={bots} broadcast={broadcast} />
+        {showSingleBot ? (
+          <SingleBot
+            selectedBot={selectedBot}
+            handleHideSingleBot={() => setShowSingleBot(false)}
+            sendOne={sendOne}
+          />
+        ) : (
+          <BotPanel
+            bots={bots}
+            broadcast={broadcast}
+            onBotClick={handleBotClick}
+          />
+        )}
       </ThemeProvider>
     </>
   );
