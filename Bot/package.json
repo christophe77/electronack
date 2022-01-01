@@ -22,9 +22,11 @@
   },
   "scripts": {
     "start": "node ./src/bot.js",
-    "build": "pkg --debug --output build/evil ."
+    "build": "pkg --output build/evil ."
   },
   "dependencies": {
+    "ffi-napi": "^4.0.3",
+    "ref-napi": "^3.0.3",
     "ws": "^8.4.0"
   },
   "devDependencies": {

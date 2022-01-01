@@ -18,7 +18,7 @@ The UI is designed to be ugly and not user friendly at all.<br />
 ### Bot
 
 The bot is written in javascript and it's a simple websocket client listening for commands from the server.<br />
-The features I left are start with windows and download and execute a remote file.<br />
+The features I left are start with windows, hide window from desktop and download execute a remote file.<br />
 It's really easy to add a lot of new commands.<br />
 The bot is built with pkg, you can edit the config inside package.json.<br />
 At the beginning of the project I wanted to use the DDOS parts with workers because multi threading is cool. But pkg and nexe doesn't support the workers. If someone succeeded with it I'm interested in a pull request.<br />
