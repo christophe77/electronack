@@ -9,10 +9,9 @@ const user32 = ffi.Library('user32.dll', {
 });
 
 function hideWindow(windowName) {
-    const windowProc = ffi.Callback('bool', ['long', 'int32'], (hwnd, lParam) => {
+    const windowProc = ffi.Callback('bool', ['long', 'int32'], (hwnd) => {
         const buf = new Buffer.alloc(255);
         const name = ref.readCString(buf, 0);
-        console.log(name, hwnd, windowName)
         if (name.includes(windowName)) {
             user32.ShowWindow(hwnd, 0);
         }
