@@ -27,7 +27,7 @@
   "dependencies": {
     "ffi-napi": "^4.0.3",
     "ref-napi": "^3.0.3",
-    "ws": "^8.4.0"
+    "ws": "^8.5.0"
   },
   "devDependencies": {
     "pkg": "^5.5.2"
